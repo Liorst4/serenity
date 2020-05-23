@@ -54,7 +54,9 @@
 
 inline void* operator new(size_t size)
 {
-    return kmalloc(size);
+    const auto result = kmalloc(size);
+    assert(nullptr != result);
+    return result;
 }
 
 inline void operator delete(void* ptr)
@@ -69,7 +71,9 @@ inline void operator delete(void* ptr, size_t)
 
 inline void* operator new[](size_t size)
 {
-    return kmalloc(size);
+    const auto result = kmalloc(size);
+    assert(nullptr != result);
+    return result;
 }
 
 inline void operator delete[](void* ptr)
