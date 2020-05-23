@@ -96,7 +96,8 @@ set(CMAKE_AR ${TOOLCHAIN_PREFIX}ar)
 
 #FIXME: -fstack-protector
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Os -Wno-sized-deallocation -fno-sized-deallocation -fno-exceptions -fno-rtti -Wno-address-of-packed-member -Wundef -Wcast-qual -Wwrite-strings -Wimplicit-fallthrough -Wno-nonnull-compare -Wno-deprecated-copy -Wno-expansion-to-defined")
+set(STATIC_ANALYSIS_FLAGS "-fanalyzer -Wno-error=analyzer-double-fclose -Wno-error=analyzer-double-free -Wno-error=analyzer-exposure-through-output-file -Wno-error=analyzer-file-leak -Wno-error=analyzer-free-of-non-heap -Wno-error=analyzer-malloc-leak -Wno-error=analyzer-possible-null-argument -Wno-error=analyzer-possible-null-dereference -Wno-error=analyzer-null-argument -Wno-error=analyzer-null-dereference -Wno-error=analyzer-stale-setjmp-buffer -Wno-error=analyzer-tainted-array-index -Wno-error=analyzer-unsafe-call-within-signal-handler -Wno-error=analyzer-use-after-free -Wno-error=analyzer-use-of-pointer-in-stale-stack-frame")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Os -Wno-sized-deallocation -fno-sized-deallocation -fno-exceptions -fno-rtti -Wno-address-of-packed-member -Wundef -Wcast-qual -Wwrite-strings -Wimplicit-fallthrough -Wno-nonnull-compare -Wno-deprecated-copy -Wno-expansion-to-defined ${STATIC_ANALYSIS_FLAGS}")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DDEBUG -DSANITIZE_PTRS")
 add_link_options(--sysroot ${CMAKE_BINARY_DIR}/Root)
