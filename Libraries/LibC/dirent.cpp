@@ -105,6 +105,7 @@ static int allocate_dirp_buffer(DIR* dirp)
     }
     size_t size_to_allocate = max(st.st_size, 4096);
     dirp->buffer = (char*)malloc(size_to_allocate);
+    assert(nullptr != dirp->buffer);
     ssize_t nread = syscall(SC_get_dir_entries, dirp->fd, dirp->buffer, size_to_allocate);
     if (nread < 0) {
         // uh-oh, the syscall returned an error
