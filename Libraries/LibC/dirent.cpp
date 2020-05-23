@@ -44,6 +44,7 @@ DIR* opendir(const char* name)
     if (fd == -1)
         return nullptr;
     DIR* dirp = (DIR*)malloc(sizeof(DIR));
+    assert(nullptr != dirp);
     dirp->fd = fd;
     dirp->buffer = nullptr;
     dirp->buffer_size = 0;
