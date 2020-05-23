@@ -43,7 +43,8 @@ int main(int argc, char** argv)
 
     char* filename = argv[1];
 
-    String path = getenv("PATH");
+    const auto* const path_env = getenv("PATH");
+    String path = (nullptr == path_env) ? "" : path_env;
     if (path.is_empty())
         path = "/bin:/usr/bin";
 
